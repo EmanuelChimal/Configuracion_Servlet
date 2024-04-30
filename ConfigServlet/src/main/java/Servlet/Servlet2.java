@@ -34,6 +34,12 @@ public class Servlet2 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        getServletContext()
+                .getRequestDispatcher("/Servlet3")
+                .include(request, response);
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -45,6 +51,11 @@ public class Servlet2 extends HttpServlet {
             out.println("<body>");
            out.println("<h1>Servlet2</h1>");
             
+           if(request.getAttribute("random") != null){
+               out.println("<p> Numero aleatorio generado en Servlet3 <br><h2> + "
+                       + request.getAttribute("random")+"</h2></p>");
+           }
+           
             out.println("<div>");
             out.println("<p>Lista de parámetros de contexto</p>");
             out.println("<ul>");

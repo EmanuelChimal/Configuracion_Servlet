@@ -6,8 +6,8 @@ package Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Emanu
  */
-public class Servlet1 extends HttpServlet {
+@WebServlet(name = "Servlet3", urlPatterns = {"/Servlet3"})
+public class Servlet3 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,46 +30,9 @@ public class Servlet1 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        getServletContext()
-            .getRequestDispatcher("/Servlet2")
-            .forward(request,response);
-        
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet1</title>");            
-            out.println("</head>");
-            
-            out.println("<body>");
-            out.println("<h1>Servlet1</h1>");
-            
-            out.println("<div>");
-            out.println("<p>Lista de parámetros de contexto</p>");
-            out.println("<ul>");
-            
-            Enumeration<String> ParameterNames = getServletContext().getInitParameterNames();
-            while(ParameterNames.hasMoreElements()){
-                String pName = ParameterNames.nextElement();
-                out.println("<li>" +pName+" = " + getServletContext().getInitParameter(pName)+"</li>");
-            }
-
-            out.println("<p>Lista de parámetros iniciales del Servlet");
-            
-            Enumeration<String> initParamNames = getInitParameterNames();
-            while(initParamNames.hasMoreElements()){
-                String pName = initParamNames.nextElement();
-                out.println("<li>"+pName+" = " + getInitParameter(pName) + "</li>");
-            }
-            out.println("</ul>");
-            out.println("<div>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        request.setAttribute("random", Math.random());
     }
+        
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
