@@ -39,7 +39,7 @@ public class Servlet1 extends HttpServlet {
             out.println("</head>");
             
             out.println("<body>");
-            out.println("<h1>Servlet Servlet11</h1>");
+            out.println("<h1>Servlet Servlet1</h1>");
             
             out.println("<div>");
             out.println("<p>Lista de parámetros de contexto</p>");
@@ -50,8 +50,9 @@ public class Servlet1 extends HttpServlet {
                 String pName = ParameterNames.nextElement();
                 out.println("<li>" +pName+" = " + getServletContext().getInitParameter(pName)+"</li>");
             }
+
+            out.println("<p>Lista de parámetros iniciales del Servlet");
             
-            out.println("<p>Lista de parámetros iniciales del Servlet>");
             Enumeration<String> initParamNames = getInitParameterNames();
             while(initParamNames.hasMoreElements()){
                 String pName = initParamNames.nextElement();
