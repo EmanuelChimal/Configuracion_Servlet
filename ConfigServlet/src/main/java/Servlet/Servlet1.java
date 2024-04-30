@@ -6,6 +6,7 @@ package Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,10 +38,27 @@ public class Servlet1 extends HttpServlet {
             out.println("<title>Servlet Servlet1</title>");            
             out.println("</head>");
             
-            
             out.println("<body>");
-            out.println("<h1>Servlet Servlet1 at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Servlet11</h1>");
             
+            out.println("<div>");
+            out.println("<p>Lista de parámetros de contexto</p>");
+            out.println("<ul>");
+            
+            Enumeration<String> ParameterNames = getServletContext().getInitParameterNames();
+            while(ParameterNames.hasMoreElements()){
+                String pName = ParameterNames.nextElement();
+                out.println("<li>" +pName+" = " + getServletContext().getInitParameter(pName)+"</li>");
+            }
+            
+            out.println("<p>Lista de parámetros iniciales del Servlet>");
+            Enumeration<String> initParamNames = getInitParameterNames();
+            while(initParamNames.hasMoreElements()){
+                String pName = initParamNames.nextElement();
+                out.println("<li>"+pName+" = " + getInitParameter(pName) + "</li>");
+            }
+            out.println("</ul>");
+            out.println("<div>");
             out.println("</body>");
             out.println("</html>");
         }
