@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +18,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Emanu
  */
-public class Servlet1 extends HttpServlet {
+@WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"}, initParams = {
+    @WebInitParam(name = "emailDefault", value = "saul.dominguez@gmail.com"),
+    @WebInitParam(name = "param2", value = "34")})
+public class Servlet2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,11 +40,10 @@ public class Servlet1 extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet1</title>");            
+            out.println("<title>Servlet2</title>");            
             out.println("</head>");
-            
             out.println("<body>");
-            out.println("<h1>Servlet1</h1>");
+           out.println("<h1>Servlet2</h1>");
             
             out.println("<div>");
             out.println("<p>Lista de parámetros de contexto</p>");
